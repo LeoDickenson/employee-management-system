@@ -1,36 +1,24 @@
-DROP DATABASE IF EXISTS registrar_db;
-CREATE DATABASE registrar_db;
+DROP DATABASE IF EXISTS workforce_db;
+CREATE DATABASE workforce_db;
 
-USE registrar_db;
+USE workforce_db;
 
-CREATE TABLE courses (
-  id INT NOT NULL,
-  course_title VARCHAR(30) NOT NULL,
-  course_description TEXT NOT NULL,
-  active BOOLEAN NOT NULL,
-  date_added DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
+CREATE TABLE department (
+  id INT,
+  name VARCHAR(30),
+  );
+
+CREATE TABLE role (
+  id INT,
+  title VARCHAR(30),
+  salary DECIMAL,
+  department_id INT,
 );
 
-CREATE TABLE students (
-  id INT NOT NULL,
-  first_name VARCHAR(30) NOT NULL,
-  last_name VARCHAR(30) NOT NULL,
-  active BOOLEAN NOT NULL,
-  date_updated DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
-);
-
-CREATE TABLE instructors (
-  id INT NOT NULL,
-  first_name VARCHAR(30) NOT NULL,
-  last_name VARCHAR(30) NOT NULL,
-  active BOOLEAN NOT NULL,
-  date_updated DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
-);
-
-CREATE TABLE classrooms (
-  id INT NOT NULL,
-  building_name VARCHAR(30) NOT NULL,
-  room_number INT NOT NULL,
-  available BOOLEAN NOT NULL,
-  date_updated DATETIME NOT NULL
+CREATE TABLE employees (
+  id INT,
+  first_name VARCHAR(30),
+  last_name VARCHAR(30),
+  role_id INT,
+  manager_id INT,
 );
