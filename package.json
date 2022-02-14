@@ -1,4 +1,10 @@
 {
+  "main": "index.js",
+  "scripts": {
+    "schema": "node ./db/schema.sql",
+    "seed": "node ./db/seeds.sql",
+    "start": "node index.js"
+  },
   "dependencies": {
     "inquirer": "^8.2.0",
     "mysql2": "^2.3.3"
