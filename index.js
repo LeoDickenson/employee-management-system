@@ -2,15 +2,34 @@ const inquirer = require("inquirer")
 
 const mysql = require('mysql2');
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'workforce_db'
-},
-    console.log(`Welcome to the workforce database CMS`)
-);
+const DBNAME = "workforce_db";
+const HOST = "localhost";
+const PORT = 3306;
+const PASS = "root";
+const USER = "root";
 
+const connection = mysql.createConnection({
+    host: HOST,
+
+
+    port: PORT,
+
+
+    user: USER,
+
+
+    password: PASS,
+    database: DBNAME
+});
+
+connection.connect(function (err) {
+    if (err) throw err;
+    // console.log(`Connected to DB ${DBNAME} on ${HOST} Port ${PORT}`);
+});
+
+function showEmployees() {};
+function showRoles() {};
+function showDepartments() {}
 
 function start() {
   let question = "What would you like to do?";
@@ -30,29 +49,31 @@ function start() {
   ).then((data) => {
       switch (data.action) {
           case "View All Employees":
-              employee.printEmployees();
+              showEmployees();
               start();
               break;
           case "View All Roles":
-              role.printRoles();
+              showRoles();
               start();
               break;
           case "View All Departments":
-              department.printDepartments();
+              showDepartments();
               start();
               break;
           case "Exit":
-              console.log("Thank you for using our HR Employee Tracker. Have a great day.");
+              console.log("Thank you, CMS will now close.");
               break;
           default:
-              console.log(`Action (${data.action}) is not supported.`);
+              console.log(`Cannot perform (${data.action}).`);
               start();
               break;
       }
   });
-}
+};
 
-start()
+start();
+
+module.exports = connection;
 
 
 
